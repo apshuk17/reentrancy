@@ -1,0 +1,177 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/aposhukl/Documents/Apoorva/BlockChain/Hardhat/reentrancy/contracts/Attack.sol": {
+      "lastModificationDate": 1661255631403,
+      "contentHash": "da1094eaa3298ae365b94784984236ba",
+      "sourceName": "contracts/Attack.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./Bank.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.11"
+      ],
+      "artifacts": [
+        "Attack"
+      ]
+    },
+    "/Users/aposhukl/Documents/Apoorva/BlockChain/Hardhat/reentrancy/contracts/Bank.sol": {
+      "lastModificationDate": 1661254404849,
+      "contentHash": "5037450ec4ba8f762516ff75808e10a8",
+      "sourceName": "contracts/Bank.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.11"
+      ],
+      "artifacts": [
+        "Bank"
+      ]
+    },
+    "/Users/aposhukl/Documents/Apoorva/BlockChain/Hardhat/reentrancy/contracts/AttackStore.sol": {
+      "lastModificationDate": 1661268250684,
+      "contentHash": "b83f58034c68cbf4b2cbe9fddba358c8",
+      "sourceName": "contracts/AttackStore.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./EtherStore.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.11"
+      ],
+      "artifacts": [
+        "AttackStore"
+      ]
+    },
+    "/Users/aposhukl/Documents/Apoorva/BlockChain/Hardhat/reentrancy/contracts/EtherStore.sol": {
+      "lastModificationDate": 1661268062299,
+      "contentHash": "ae06c55410488f5d1339298b128967a7",
+      "sourceName": "contracts/EtherStore.sol",
+      "solcConfig": {
+        "version": "0.8.11",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.11"
+      ],
+      "artifacts": [
+        "EtherStore"
+      ]
+    }
+  }
+}

